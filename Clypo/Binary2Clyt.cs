@@ -114,6 +114,8 @@ namespace Clypo
 
             if (sectionReadFnc.ContainsKey(sectionId)) {
                 sectionReadFnc[sectionId]?.Invoke();
+            } else {
+                Console.WriteLine("WARN!! Unknown section: " + sectionId);
             }
 
             reader.Stream.PopPosition();
@@ -324,7 +326,8 @@ namespace Clypo
             for (int i = 0; i < num; i++) {
                 uint offset = reader.ReadUInt32();
                 reader.Stream.RunInPosition(
-                    () => clyt.Fonts.Add(reader.ReadString()),
+                    // Temporary workaround for Yarhl issue
+                    () => clyt.Fonts.Add(reader.ReadString(Encoding.UTF8)),
                     baseOffset + offset);
             }
         }

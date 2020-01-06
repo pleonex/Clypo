@@ -11,10 +11,22 @@ files: BCLYT.
 clypo.exe export input.bclyt output.yml output.po
 ```
 
+### Export directory recursively
+
+```plain
+clypo.exe export-dir input output
+```
+
 ### Import
 
 ```plain
-clypo.exe import input.yml input.po inout.bclyt
+clypo.exe import input.yml input.po original.bclyt output.bclyt
+```
+
+### Import directory recursively
+
+```plain
+clypo.exe import-dir original input output
 ```
 
 ## License
