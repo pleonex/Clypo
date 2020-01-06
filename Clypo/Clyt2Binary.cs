@@ -80,9 +80,18 @@ namespace Clypo
         void WriteSections(Clyt source)
         {
             WriteSection("lyt1", () => WriteLayout(source.Layout));
-            WriteSection("txl1", () => WriteTextures(source.Textures));
-            WriteSection("fnl1", () => WriteFonts(source.Fonts));
-            WriteSection("mat1", () => WriteMaterials(source.Materials));
+
+            if (source.Textures.Count > 0) {
+                WriteSection("txl1", () => WriteTextures(source.Textures));
+            }
+
+            if (source.Fonts.Count > 0) {
+                WriteSection("fnl1", () => WriteFonts(source.Fonts));
+            }
+
+            if (source.Materials.Count > 0) {
+                WriteSection("mat1", () => WriteMaterials(source.Materials));
+            }
 
             WritePanelGroup(source.RootPanel);
             WriteGroups(source.RootGroup);
@@ -98,6 +107,10 @@ namespace Clypo
                 WriteSection("wnd1", () => WriteWindow(window));
             } else {
                 WriteSection("pan1", () => WritePanel(panel));
+            }
+
+            if (panel.UserData != null) {
+                WriteSection("usd1", () => WriteUserData(panel.UserData));
             }
 
             if (panel.Children.Any()) {
@@ -269,6 +282,11 @@ namespace Clypo
 
             writer.Write(panel.Size.Width);
             writer.Write(panel.Size.Height);
+        }
+
+        void WriteUserData(UserData data)
+        {
+            writer.Write(data.Data);
         }
 
         void WriteTextInfo(TextSection textInfo)

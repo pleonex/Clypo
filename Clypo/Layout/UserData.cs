@@ -19,32 +19,8 @@
 // SOFTWARE.
 namespace Clypo.Layout
 {
-    using System.Collections.ObjectModel;
-
-    public class Panel
+    public class UserData
     {
-        public PanelFlags Flags { get; set; }
-
-        public byte Origin { get; set; }
-
-        public byte Alpha { get; set; }
-
-        public PanelMagnificationFlags MagnificationFlags { get; set; }
-
-        public string Name { get; set; }
-
-        public Vector3 Translation { get; set; }
-
-        public Vector3 Rotation { get; set; }
-
-        public Vector2 Scale { get; set; }
-
-        public Size Size { get; set; }
-
-        public Panel Parent { get; set; }
-
-        public Collection<Panel> Children { get; } = new Collection<Panel>();
-
-        public UserData UserData { get; set; }
+        public byte[] Data { get; set; }
     }
 }
