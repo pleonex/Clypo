@@ -3,6 +3,20 @@
 **Clypo** is a tool to export and import the content of the Nintendo 3DS layout
 files: BCLYT.
 
+## Usage
+
+### Export
+
+```plain
+clypo.exe export input.bclyt output.yml output.po
+```
+
+### Import
+
+```plain
+clypo.exe import input.yml input.po inout.bclyt
+```
+
 ## License
 
 This software is license under the [MIT](https://choosealicense.com/licenses/mit/) license.
