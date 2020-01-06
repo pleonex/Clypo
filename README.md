@@ -1,7 +1,10 @@
 # Clypo ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/pleonex/clypo/Build) ![GitHub](https://img.shields.io/github/license/pleonex/Clypo)
 
 **Clypo** is a tool to export and import the content of the Nintendo 3DS layout
-files: BCLYT.
+files: BCLYT (_Binary CTR LaYouT_).
+
+The tool runs in Windows, Linux and MacOS. You can get the latest version
+from the [GitHub release page](https://github.com/pleonex/Clypo/releases/latest).
 
 ## Usage
 
