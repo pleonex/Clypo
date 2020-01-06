@@ -1,0 +1,13 @@
+# Compile result
+bin/
+obj/
+
+# Project files
+*.userprefs
+.vs/
+
+# NuGet
+packages/
+
+# NUnit output
+TestResult.xml

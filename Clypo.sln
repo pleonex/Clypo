@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clypo", "Clypo\Clypo.csproj", "{89BC4BCF-3D5F-4EF5-AE72-4B48BC50B31C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{89BC4BCF-3D5F-4EF5-AE72-4B48BC50B31C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89BC4BCF-3D5F-4EF5-AE72-4B48BC50B31C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89BC4BCF-3D5F-4EF5-AE72-4B48BC50B31C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89BC4BCF-3D5F-4EF5-AE72-4B48BC50B31C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F8E86A47-696B-4930-AE50-E8C5CCFD973F}
+	EndGlobalSection
+EndGlobal
