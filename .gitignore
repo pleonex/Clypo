@@ -1,6 +1,7 @@
 # Compile result
 bin/
 obj/
+artifacts/
 
 # Project files
 *.userprefs

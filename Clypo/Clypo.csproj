@@ -1,17 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AssemblyName>Clypo</AssemblyName>
-    <Version>1.1.0</Version>
-    <Description>Import and export BCLYT files.</Description>
-    <Product>SceneGate</Product>
-    <Authors>pleonex</Authors>
-    <Company></Company>
-    <Copyright>Copyright © 2019 SceneGate</Copyright>
 
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <PublishTrimmed>true</PublishTrimmed>
+    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageProjectUrl>https://github.com/pleonex/Clypo</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/pleonex/Clypo</RepositoryUrl>
+    <PackageReleaseNotes>https://github.com/pleonex/Clypo/releases/tag/v$(Version)</PackageReleaseNotes>
+    <PackageTags>rom-hacking;romhacking;n3ds;nintendo-3ds;bclyt</PackageTags>
+    <License>MIT</License>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>

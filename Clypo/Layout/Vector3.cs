@@ -37,5 +37,10 @@ namespace Clypo.Layout
         public float Y { get; set; }
 
         public float Z { get; set; }
+
+        public static Vector3 operator +(Vector3 a, Vector3 b)
+        {
+            return new Vector3(a.X + b.X, a.Y + b.Y, a.Z + b.Z);
+        }
     }
 }

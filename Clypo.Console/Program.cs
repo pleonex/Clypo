@@ -17,14 +17,14 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
-namespace Clypo
+namespace Clypo.Console
 {
     using System;
     using System.IO;
     using System.Reflection;
     using Clypo.Layout;
-    using Yarhl.FileSystem;
     using Yarhl.FileFormat;
+    using Yarhl.FileSystem;
     using Yarhl.IO;
     using Yarhl.Media.Text;
 
