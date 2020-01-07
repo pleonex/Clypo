@@ -11,25 +11,25 @@ from the [GitHub release page](https://github.com/pleonex/Clypo/releases/latest)
 ### Export
 
 ```plain
-clypo.exe export input.bclyt output.yml output.po
+Clypo.Console.exe export input.bclyt output.yml output.po
 ```
 
 ### Export directory recursively
 
 ```plain
-clypo.exe export-dir input output
+Clypo.Console.exe export-dir input output
 ```
 
 ### Import
 
 ```plain
-clypo.exe import input.yml input.po original.bclyt output.bclyt
+Clypo.Console.exe import input.yml input.po original.bclyt output.bclyt
 ```
 
 ### Import directory recursively
 
 ```plain
-clypo.exe import-dir original input output
+Clypo.Console.exe import-dir original input output
 ```
 
 ## License
