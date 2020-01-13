@@ -61,6 +61,7 @@ namespace Clypo
                 { "txt1", ReadText },
                 { "pic1", ReadPicture },
                 { "wnd1", ReadWindow },
+                { "bnd1", ReadBoundary },
                 { "usd1", ReadUserData },
                 { "grp1", ReadGroup },
                 { "grs1", ReadGroupStart },
@@ -343,6 +344,14 @@ namespace Clypo
             // TODO: Parse rest of the section
             int unknownSize = (int)sectionSize - 0x44 - 0x08;
             window.Unknown = reader.ReadBytes(unknownSize);
+        }
+
+        void ReadBoundary()
+        {
+            Boundary boundary = new Boundary();
+            ReadPanel(boundary);
+            boundary.Parent = currentPanel;
+            currentPanel.Children.Add(boundary);
         }
 
         void ReadUserData()

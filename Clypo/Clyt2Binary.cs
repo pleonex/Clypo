@@ -105,6 +105,8 @@ namespace Clypo
                 WriteSection("pic1", () => WritePictureInfo(picture));
             } else if (panel is Window window) {
                 WriteSection("wnd1", () => WriteWindow(window));
+            } else if (panel is Boundary boundary) {
+                WriteSection("bnd1", () => WriteBoundary(boundary));
             } else {
                 WriteSection("pan1", () => WritePanel(panel));
             }
@@ -351,6 +353,11 @@ namespace Clypo
         {
             WritePanel(window);
             writer.Write(window.Unknown);
+        }
+
+        void WriteBoundary(Boundary boundary)
+        {
+            WritePanel(boundary);
         }
     }
 }
