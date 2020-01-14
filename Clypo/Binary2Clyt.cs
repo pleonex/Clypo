@@ -159,22 +159,14 @@ namespace Clypo
                 uint numTexMatrix = (flags >> 2) & 0x3;
                 uint numTexCoordGen = (flags >> 4) & 0x3;
                 uint numTevStage = (flags >> 6) & 0x7;
-                uint hasAlphaCompare = (flags >> 9) & 0x01;
-                uint hasBlendMode = (flags >> 10) & 0x01;
+                bool hasAlphaCompare = ((flags >> 9) & 0x01) == 1;
+                bool hasBlendMode = ((flags >> 10) & 0x01) == 1;
                 material.UseTextureOnly = ((flags >> 11) & 0x01) == 1;
-                uint separateBlendMode = (flags >> 12) & 0x01;
-                uint hasIndirectParam = (flags >> 13) & 0x01;
+                bool separateBlendMode = ((flags >> 12) & 0x01) == 1;
+                bool hasIndirectParam = ((flags >> 13) & 0x01) == 1;
                 uint numProjTexGenParam = (flags >> 14) & 0x03;
-                uint hasFontShadowParam = (flags >> 16) & 0x01;
+                bool hasFontShadowParam = ((flags >> 16) & 0x01) == 1;
 
-                uint texMapOffset = 0x34;
-                uint texMatrixOffset = texMapOffset + (numTexMap * 4);
-                uint texCoordGenOffset = texMatrixOffset + (numTexMatrix * 0x14);
-                uint tevStageOffset = texCoordGenOffset + (numTexCoordGen * 4);
-                uint alphaCompareOffset = tevStageOffset + (numTevStage * 0xC);
-                uint blendModeOffset = alphaCompareOffset + 0x8;
-
-                reader.Stream.Seek(offset + texMapOffset);
                 for (int i = 0; i < numTexMap; i++) {
                     var entry = new TextureMapEntry();
                     entry.Index = reader.ReadUInt16();
@@ -189,7 +181,6 @@ namespace Clypo
                     material.TexMapEntries.Add(entry);
                 }
 
-                reader.Stream.Seek(offset + texMatrixOffset);
                 for (int i = 0; i < numTexMatrix; i++) {
                     var entry = new TextureMatrixEntry();
                     entry.Translation = new Vector2(reader.ReadSingle(), reader.ReadSingle());
@@ -199,12 +190,46 @@ namespace Clypo
                     material.TexMatrixEntries.Add(entry);
                 }
 
-                reader.Stream.Seek(offset + texCoordGenOffset);
                 for (int i = 0; i < numTexCoordGen; i++) {
                     material.TextureCoordGen.Add(reader.ReadSingle());
                 }
 
-                // TODO: Find a bclyt with the rest of sections
+                for (int i = 0; i < numTevStage; i++) {
+                    var stage = new TevStage();
+                    stage.Param1 = reader.ReadUInt32();
+                    stage.Param2 = reader.ReadUInt32();
+                    stage.Param3 = reader.ReadUInt32();
+                    material.TevStages.Add(stage);
+                }
+
+                if (hasAlphaCompare) {
+                    material.AlphaCompare = new AlphaCompare {
+                        Function = reader.ReadUInt32(),
+                        Reference = reader.ReadSingle(),
+                    };
+                }
+
+                if (hasBlendMode) {
+                    material.ColorBlendMode = new BlendMode {
+                        BlendOperator = reader.ReadByte(),
+                        SourceFactor = reader.ReadByte(),
+                        DestinationFactor = reader.ReadByte(),
+                        LogicOperator = reader.ReadByte(),
+                    };
+                }
+
+                if (separateBlendMode) {
+                    material.AlphaBlendMode = new BlendMode {
+                        BlendOperator = reader.ReadByte(),
+                        SourceFactor = reader.ReadByte(),
+                        DestinationFactor = reader.ReadByte(),
+                        LogicOperator = reader.ReadByte(),
+                    };
+                }
+
+                if (hasIndirectParam || numProjTexGenParam > 0 || hasFontShadowParam) {
+                    Console.WriteLine($"WARN: Material ({material.Name}) with unknown sections.");
+                }
 
                 clyt.Materials.Add(material);
                 reader.Stream.PopPosition();

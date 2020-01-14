@@ -220,9 +220,13 @@ namespace Clypo
 
                 int flag = 0x00;
                 flag |= mat.TexMapEntries.Count;
-                flag |= (mat.TexMatrixEntries.Count << 2);
-                flag |= (mat.TextureCoordGen.Count << 4);
-                flag |= ((mat.UseTextureOnly ? 1 : 0) << 11);
+                flag |= mat.TexMatrixEntries.Count << 2;
+                flag |= mat.TextureCoordGen.Count << 4;
+                flag |= mat.TevStages.Count << 6;
+                flag |= ((mat.AlphaCompare != null) ? 1 : 0) << 9;
+                flag |= ((mat.ColorBlendMode != null) ? 1 : 0) << 10;
+                flag |= (mat.UseTextureOnly ? 1 : 0) << 11;
+                flag |= ((mat.AlphaBlendMode != null) ? 1 : 0) << 12;
                 // TODO: Find a bclyt with the rest of sections
 
                 writer.Write(flag);
@@ -250,6 +254,31 @@ namespace Clypo
                 foreach (var coord in mat.TextureCoordGen) {
                     writer.Write(coord);
                 }
+
+                foreach (var tev in mat.TevStages) {
+                    writer.Write(tev.Param1);
+                    writer.Write(tev.Param2);
+                    writer.Write(tev.Param3);
+                }
+
+                if (mat.AlphaCompare != null) {
+                    writer.Write(mat.AlphaCompare.Function);
+                    writer.Write(mat.AlphaCompare.Reference);
+                }
+
+                if (mat.ColorBlendMode != null) {
+                    writer.Write(mat.ColorBlendMode.BlendOperator);
+                    writer.Write(mat.ColorBlendMode.SourceFactor);
+                    writer.Write(mat.ColorBlendMode.DestinationFactor);
+                    writer.Write(mat.ColorBlendMode.LogicOperator);
+                }
+
+                if (mat.AlphaBlendMode != null) {
+                    writer.Write(mat.AlphaBlendMode.BlendOperator);
+                    writer.Write(mat.AlphaBlendMode.SourceFactor);
+                    writer.Write(mat.AlphaBlendMode.DestinationFactor);
+                    writer.Write(mat.AlphaBlendMode.LogicOperator);
+                }
             }
         }
 
@@ -258,7 +287,7 @@ namespace Clypo
             writer.Write(group.Name, 0x10);
             writer.Write((uint)group.Panels.Count);
             foreach (var panel in group.Panels) {
-                writer.Write(panel, 0x10);
+                writer.Write(panel, 0x10, false);
             }
         }
 

@@ -19,28 +19,10 @@
 // SOFTWARE.
 namespace Clypo.Layout
 {
-    using System.Collections.ObjectModel;
-
-    public class Material
+    public class AlphaCompare
     {
-        public string Name { get; set; }
+        public uint Function { get; set; }
 
-        public uint[] TevConstantColors { get; } = new uint[7];
-
-        public bool UseTextureOnly { get; set; }
-
-        public Collection<TextureMapEntry> TexMapEntries { get; } = new Collection<TextureMapEntry>();
-
-        public Collection<TextureMatrixEntry> TexMatrixEntries { get; } = new Collection<TextureMatrixEntry>();
-
-        public Collection<float> TextureCoordGen { get; } = new Collection<float>();
-
-        public Collection<TevStage> TevStages { get; } = new Collection<TevStage>();
-
-        public AlphaCompare AlphaCompare { get; set; }
-
-        public BlendMode ColorBlendMode { get; set; }
-
-        public BlendMode AlphaBlendMode { get; set; }
+        public float Reference { get; set; }
     }
 }

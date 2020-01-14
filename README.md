@@ -37,4 +37,6 @@ Clypo.Console.exe import-dir original input output
 This software is license under the [MIT](https://choosealicense.com/licenses/mit/) license.
 
 The specification of the BCLYT is based on assembly research in the game
-_Attack of the Friday Monsters_ and information from [3dbrew](https://www.3dbrew.org/wiki/CLYT_format)
+_Attack of the Friday Monsters_, information from [3dbrew](https://www.3dbrew.org/wiki/CLYT_format)
+and part of the material section from [Every File Explorer](https://github.com/Gericom/EveryFileExplorer)
+by Gericom.
